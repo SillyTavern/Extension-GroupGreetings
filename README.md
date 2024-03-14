@@ -37,12 +37,12 @@ Yes.
 
 ```json
 {
-    data: {
-        extensions: {
-            group_greetings: [
-                'your',
-                'strings',
-                'here'
+    "data": {
+        "extensions": {
+            "group_greetings": [
+                "your",
+                "strings",
+                "here"
             ]
         }
     }
