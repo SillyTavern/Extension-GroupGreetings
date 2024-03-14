@@ -12,7 +12,7 @@ This extension allows setting alternate greetings that are specific to group cha
 4. Start a new group chat with a character you've added greetings for.
 5. One of the added group greetings will be picked randomly.
 
-**Pro tip:** group greetings are saved to the character card. They will be visible to other people if they have this extension installed.
+**Pro tip:** Group greetings are saved to the character card. They will be visible to other people if they have this extension installed.
 
 ## Prerequisites
 
