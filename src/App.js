@@ -20,10 +20,25 @@ function handleAppEvent(args) {
 
 function App() {
     function handleClick() {
+        const context = SillyTavern.getContext();
         const element = document.createElement('div');
         const debouncedChangeHandler = _.debounce(handleListChange, 500);
         ReactDOM.render(<Popup onListChange={debouncedChangeHandler} initialList={getInitialList()} name={getName()} />, element);
-        SillyTavern.getContext().callPopup(element, 'text', '', { wide: true, large: true });
+        context.callPopup(element, 'text', '', { wide: true, large: true });
+    }
+
+    function getCharacterId() {
+        const context = SillyTavern.getContext();
+        let characterId = context.characterId;
+        // When peeking a group chat member, find a proper characterId
+        if (context.groupId) {
+            const avatarUrlInput = document.getElementById('avatar_url_pole');
+            if (avatarUrlInput instanceof HTMLInputElement) {
+                const avatarUrl = avatarUrlInput.value;
+                characterId = context.characters.findIndex(c => c.avatar === avatarUrl);
+            }
+        }
+        return characterId;
     }
 
     function handleListChange(list) {
@@ -31,7 +46,8 @@ function App() {
         if (context.menuType === 'create') {
             _.set(context, 'createCharacterData.extensions.group_greetings', list);
         } else {
-            context.writeExtensionField(context.characterId, 'group_greetings', list);
+            const characterId = getCharacterId();
+            context.writeExtensionField(characterId, 'group_greetings', list);
         }
     }
 
@@ -40,7 +56,8 @@ function App() {
         if (context.menuType === 'create') {
             return context.createCharacterData.name || 'Unknown';
         } else {
-            return context.characters[context.characterId]?.data?.name || 'Unknown';
+            const characterId = getCharacterId();
+            return context.characters[characterId]?.data?.name || 'Unknown';
         }
     }
 
@@ -49,7 +66,8 @@ function App() {
         if (context.menuType === 'create') {
             return _.get(context, 'createCharacterData.extensions.group_greetings', []);
         } else {
-            return context.characters[context.characterId]?.data?.extensions?.group_greetings || [];
+            const characterId = getCharacterId();
+            return context.characters[characterId]?.data?.extensions?.group_greetings || [];
         }
     }
 
