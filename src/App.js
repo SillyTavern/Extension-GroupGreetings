@@ -21,7 +21,7 @@ function handleAppEvent(args) {
 function App() {
     function handleClick() {
         const element = document.createElement('div');
-        const debouncedChangeHandler = _.debounce(handleListChange, 1000);
+        const debouncedChangeHandler = _.debounce(handleListChange, 500);
         ReactDOM.render(<Popup onListChange={debouncedChangeHandler} initialList={getInitialList()} name={getName()} />, element);
         SillyTavern.getContext().callPopup(element, 'text', '', { wide: true, large: true });
     }
