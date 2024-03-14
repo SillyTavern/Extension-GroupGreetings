@@ -20,20 +20,20 @@ SillyTavern - latest `staging` version preferred, or stable release >= 1.11.6.
 
 This *won't* work on any older versions.
 
-### Nerd zone 🤓
+## Nerd zone 🤓
 
-## React? In MY SillyTavern?
+### React? In MY SillyTavern?
 
 Yes.
 
-## How to build
+### How to build
 
 1. Clone the repo
 2. Run `npm install`
 3. Run `npm run build`
 4. Minimized plugin file will be in the `/dist` folder
 
-## Data model
+### Data model
 
 ```json
 {
@@ -48,3 +48,7 @@ Yes.
     }
 }
 ```
+
+### License
+
+AGPLv3
