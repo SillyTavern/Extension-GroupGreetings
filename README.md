@@ -40,7 +40,15 @@ Yes.
 ```js
 {
     "data": {
+        // Spec v3 field
+        // https://github.com/kwaroran/character-card-spec-v3/blob/main/SPEC_V3.md#group_only_greetings
+        "group_only_greetings": [
+            "your",
+            "strings",
+            "here"
+        ],
         "extensions": {
+            // Legacy field, kept for backward compatibility
             "group_greetings": [
                 "your",
                 "strings",
