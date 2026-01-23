@@ -15,6 +15,7 @@ This extension allows setting alternate greetings that are specific to group cha
 
 > [!TIP]
 > Group greetings are saved to the character card. They will be visible to other people if they have this extension installed.
+> When both Spec v3 and legacy fields are present, Spec v3 field takes precedence.
 
 ## Prerequisites
 
