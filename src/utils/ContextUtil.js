@@ -1,4 +1,5 @@
 /* global SillyTavern */
+/* global $ */
 import { ACTIVATION_MODE } from '../constants';
 import _ from 'lodash';
 
@@ -152,6 +153,16 @@ export async function saveGreetingsList(list) {
                 group_only_greetings: list,
             },
         });
+        // Process JSON data
+        if (character.json_data) {
+            const jsonData = JSON.parse(character.json_data);
+            _.set(jsonData, 'group_only_greetings', list);
+            _.set(jsonData, 'extensions.group_greetings', list);
+            character.json_data = JSON.stringify(jsonData);
+
+            // Make sure the data doesn't get lost when saving the current character
+            $('#character_json_data').val(character.json_data);
+        }
         if (typeof context.getOneCharacter === 'function') {
             await context.getOneCharacter(character.avatar);
         } else if (typeof context.unshallowCharacter === 'function') {

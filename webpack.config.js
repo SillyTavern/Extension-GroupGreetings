@@ -1,12 +1,14 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
     entry: path.join(__dirname, 'src/index.js'),
     output: {
         path: path.join(__dirname, 'dist/'),
         filename: 'index.js',
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {
