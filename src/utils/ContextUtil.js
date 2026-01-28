@@ -66,10 +66,16 @@ export function getName() {
  */
 export function getListFromCharacterData(characterData) {
     const specV3Greetings = characterData?.group_only_greetings;
+    const extensionGreetings = characterData?.extensions?.group_greetings;
+    // Special legacy data handling: if both exist and extension is non-empty while specV3 is empty, use extension
+    if (Array.isArray(specV3Greetings) && Array.isArray(extensionGreetings)) {
+        if (extensionGreetings.length > 0 && specV3Greetings.length === 0) {
+            return cleanUpArray(extensionGreetings);
+        }
+    }
     if (Array.isArray(specV3Greetings)) {
         return cleanUpArray(specV3Greetings);
     }
-    const extensionGreetings = characterData?.extensions?.group_greetings;
     if (Array.isArray(extensionGreetings)) {
         return cleanUpArray(extensionGreetings);
     }
